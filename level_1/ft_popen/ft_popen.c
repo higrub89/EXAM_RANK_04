@@ -1,4 +1,7 @@
 include <unistd.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <sys/types.h>
 
 int ft_popen(const char *file, char *const char av[], char type)
 {
