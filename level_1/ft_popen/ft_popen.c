@@ -1,9 +1,9 @@
-include <unistd.h>
+#include <unistd.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <sys/types.h>
 
-int ft_popen(const char *file, char *const char av[], char type)
+int ft_popen(const char *file, const char *av[], char type)
 {
     pid_t   pid;
     int     fd[2];
