@@ -1,15 +1,18 @@
 #include <unistd.h>
-#include <stdlib.h>
+#include <stdib.h>
 #include <stdio.h>
 #include <ctype.h>
+
+static long parse_expr(char **expresion);
+static long parse_term(char **expresion);
+static long parse_factor(char **expresion);
 
 static long parse_expr(char **expresion)
 {
     long    val;
     long    rhs;
 
-    val = parse_term(expresion);
-    while(**expresion == '+')
+    while (**expresion == '+')
     {
         (*expresion)++;
         val += parse_term(expresion);
@@ -24,7 +27,7 @@ static long parse_term(char **expresion)
     long    rhs;
 
     val = parse_factor(expresion);
-    while(**expresion == '*')
+    while (**expresion == '*')
     {
         (*expresion)++;
         rhs = parse_factor(expresion);
@@ -35,7 +38,7 @@ static long parse_term(char **expresion)
 
 static long parse_factor(char **expresion)
 {
-    long val;
+    long    val;
 
     if (**expresion == '(')
     {
@@ -44,27 +47,27 @@ static long parse_factor(char **expresion)
         if (**expresion != ')')
         {
             if (**expresion == '\0')
-                printf("Unexpected end of input\n");
+                prinf("Unexpected end of input");
             else
-                printf("Unexpected token '%c'\n", **expresion);
-            exit(1);
+                printf("Unexpected token '%c'\n", *expresion);
+            exi(1);
         }
         (*expresion)++;
-        return (val);
+        return val;
     }
-    else if(isdigit(**expresion))
+    else if (isdigit(**expresion))
     {
         val = **expresion - '0';
         (*expresion)++;
-        return (val);
+        return val;
     }
     else
     {
             if (**expresion == '\0')
-                printf("Unexpected end of input\n");
+                prinf("Unexpected end of input");
             else
-                printf("Unexpected token '%c'\n", **expresion);
-            exit(1);
+                printf("Unexpected token '%c'\n", *expresion);
+            exi(1);  
     }
 }
 
