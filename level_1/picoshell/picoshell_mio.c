@@ -1,5 +1,5 @@
-#include <unistd.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <sys/wait.h>
 
 int picoshell(char **cmds[])
@@ -9,7 +9,7 @@ int picoshell(char **cmds[])
     int     last_fd = -1;
     int     i = 0;
 
-    while (cmds[i])
+    while(cmds[i])
     {
         if (cmds[i + 1] && pipe(fd) == -1)
             return 1;
@@ -21,7 +21,7 @@ int picoshell(char **cmds[])
                 close(fd[0]);
                 close(fd[1]);
             }
-            return 1;
+            return (1);
         }
         if (pid == 0)
         {
@@ -38,7 +38,7 @@ int picoshell(char **cmds[])
                     exit(1);
                 close(fd[1]);
             }
-            execvp(cmds[i][0], cmds[i])
+            execvp(cmds[i][0], cmds[i]);
             exit(1);
         }
         if (last_fd != -1)
@@ -48,11 +48,11 @@ int picoshell(char **cmds[])
             close(fd[1]);
             last_fd = fd[0];
         }
-        i++;   
+        i++;       
     }
     while (wait(NULL) > 0)
     {
         ;
     }
-    return 0;
+    return (0);
 }
