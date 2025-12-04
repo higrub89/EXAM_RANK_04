@@ -1,6 +1,6 @@
-#include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <ctype.h>
 
 static long parse_expr(char **expression);
@@ -9,9 +9,7 @@ static long parse_factor(char **expression);
 
 static long parse_expr(char **expression)
 {
-    long    val;
-
-    val = parse_term(expression);
+    long    val = parse_term(expression);
     while (**expression == '+')
     {
         (*expression)++;
@@ -22,9 +20,7 @@ static long parse_expr(char **expression)
 
 static long parse_term(char **expression)
 {
-    long    val;
-
-    val = parse_factor(expression);
+    long    val = parse_factor(expression);
     while (**expression == '*')
     {
         (*expression)++;
@@ -36,7 +32,6 @@ static long parse_term(char **expression)
 static long parse_factor(char **expression)
 {
     long    val;
-
     if (**expression == '(')
     {
         (*expression)++;
@@ -67,6 +62,7 @@ static long parse_factor(char **expression)
         exit(1);
     }
 }
+
 int main(int ac, char **av)
 {
     char    *expression;
@@ -74,10 +70,9 @@ int main(int ac, char **av)
 
     if (ac != 2)
         return 0;
-
     expression = av[1];
     result = parse_expr(&expression);
-
+    
     if (*expression != '\0')
     {
         printf("Unexpected token '%c'\n", *expression);
