@@ -21,7 +21,8 @@ int ft_popen(const char *file, char *const argv[], char type)
                 close(fd[1]);
                 exit (1);
             }
-            else
+        }
+        else
             {
                 if (dup2(fd[0], STDIN_FILENO) == -1)
                 {
